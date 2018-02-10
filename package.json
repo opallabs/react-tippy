@@ -20,9 +20,10 @@
     "babel-loader": "^6.4.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-lodash": "^3.2.11",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-es2015": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "chai": "^3.5.0",
     "eslint": "^3.18.0",
@@ -31,11 +32,11 @@
     "flow-bin": "^0.42.0",
     "lodash-webpack-plugin": "^0.11.2",
     "mocha": "^3.2.0",
-    "react": "^15.5.3",
-    "react-dom": "^15.5.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-redux": "^5.0.5",
-    "react-scripts": "0.9.5",
-    "recompose": "^0.23.1",
+    "react-scripts": "1.1.1",
+    "recompose": "^0.26.0",
     "redux": "^3.7.1",
     "redux-state-action": "^1.0.8",
     "redux-thunk": "^2.2.0",
@@ -47,6 +48,7 @@
     "start": "react-scripts start"
   },
   "dependencies": {
-    "popper.js": "^1.11.1"
+    "popper.js": "^1.11.1",
+    "tippy.js": "^2.1.1"
   }
 }

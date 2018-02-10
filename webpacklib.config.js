@@ -33,7 +33,7 @@ const config = {
         loader: 'babel-loader',
         options: {
           presets: ['es2015', 'react'],
-          plugins: ['transform-object-rest-spread']
+          plugins: ['transform-object-rest-spread', 'transform-class-properties']
         },
         exclude: /(node_modules|bower_components)/,
       },
@@ -67,6 +67,13 @@ const config = {
       amd: 'popper.js',
       umd: 'popper.js',
     },
+    'tippy.js/dist/tippy.standalone.js': {
+        root: 'tippy',
+        commonjs2: 'tippy.js/dist/tippy.standalone.js',
+        commonjs: 'tippy.js/dist/tippy.standalone.js',
+        amd: 'tippy.js/dist/tippy.standalone.js',
+        umd: 'tippy.js/dist/tippy.standalone.js',
+    }
   },
   plugins: plugins,
 };

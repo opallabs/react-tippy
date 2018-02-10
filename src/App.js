@@ -19,9 +19,8 @@ import {
 const ManualPopover = ({ children, open, onRequestClose, content }) => {
   return (
     <Tooltip
-      useContext
-      html={content}
-      position={"bottom"}
+      render={content}
+      placement={"bottom"}
       open={open}
       onRequestClose={onRequestClose}
       trigger="manual"
@@ -145,10 +144,9 @@ class App extends Component {
         <Tooltip
           // options
           title="Welcome to React"
-          position="bottom"
+          placement="bottom"
           trigger="mouseenter"
           duration={3000}
-          unmountHTMLWhenHide
         >
           <p>
             Hover here to show popup
@@ -158,8 +156,6 @@ class App extends Component {
         <Tooltip
           trigger="click"
           tabIndex={0}
-          unmountHTMLWhenHide
-          useContext
           rawTemplate={document.querySelector('#rawHTML')}
         >
           Raw html
@@ -200,9 +196,8 @@ class App extends Component {
           <Tooltip
             trigger="click"
             tabIndex={0}
-            unmountHTMLWhenHide
             useContext
-            html={(
+            render={(
               <TooltipContent />
             )}
           >
@@ -214,10 +209,10 @@ class App extends Component {
         <Tooltip
           trigger="click"
           interactive
-          position="right"
+          placement="right"
           animateFill={false}
           transitionFlip={false}
-          html={(
+          render={() => (
             <div style={{ width: 400 }}>
               <p>{tooltipContent}</p>
               <input
