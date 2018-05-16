@@ -80,7 +80,6 @@ class Tooltip extends Component {
   }
 
   destroyTippy = () => {
-    this.tippy.hide();
     this.tippy.destroy();
     this.tippy = null;
   }
