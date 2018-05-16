@@ -156,7 +156,6 @@ var Tooltip = function (_Component) {
         _this.showTooltip();
       }
     }, _this.destroyTippy = function () {
-      _this.tippy.hide();
       _this.tippy.destroy();
       _this.tippy = null;
     }, _temp), _possibleConstructorReturn(_this, _ret);
