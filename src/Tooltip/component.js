@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import tippy from 'tippy.js/dist/tippy.standalone.js';
+import tippy from 'tippy.js/dist/tippy.all.js';
+import 'tippy.js/dist/themes/light.css';
+import 'tippy.js/dist/themes/translucent.css';
 
 function applyIfFunction(fn) {
   return (typeof fn === 'function') ? fn() : fn;
