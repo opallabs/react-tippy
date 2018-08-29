@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
 import tippy from 'tippy.js/dist/tippy.standalone.js';
 
-const defaultProps = {
-  title: null,
-  open: false,
-  disabled: false
-};
-
-
-function applyIfFunction( fn ) {
+function applyIfFunction(fn) {
   return (typeof fn === 'function') ? fn() : fn;
 }
 
-
-class Tooltip extends Component {
+export default class Tooltip extends Component {
+  static defaultProps = {
+    disabled: false,
+    open: false,
+    title: null,
+  };
 
   componentDidMount() {
     this.initTippy();
@@ -25,8 +23,9 @@ class Tooltip extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if ( !this.tippy )
+    if (!this.tippy) {
       return;
+    }
 
     // enable and disabled
     if (this.props.disabled === false && prevProps.disabled === true) {
@@ -60,18 +59,18 @@ class Tooltip extends Component {
   }
 
   contentRoot = () => {
-      if ( !this._contentRoot && typeof window === 'object' )
-        this._contentRoot = window.document.createElement( 'div' );
-      return this._contentRoot;
+    if (!this._contentRoot && typeof window === 'object')
+      this._contentRoot = window.document.createElement('div');
+    return this._contentRoot;
   }
 
   initTippy = () => {
     this.tooltipDOM.setAttribute('title', this.props.title);
     tippy(this.tooltipDOM, {
-        ...this.props,
-        html: this.props.render ? this.contentRoot() : this.props.rawTemplate,
-        dynamicTitle: true,
-        performance: true
+      ...this.props,
+      html: this.props.render ? this.contentRoot() : this.props.rawTemplate,
+      dynamicTitle: true,
+      performance: true
     });
     this.tippy = this.tooltipDOM._tippy;
     if (this.props.open) {
@@ -84,31 +83,21 @@ class Tooltip extends Component {
     this.tippy = null;
   }
 
-
   render() {
     return (
       <div
-        ref={(tooltip) => { this.tooltipDOM = tooltip; }}
-        title={this.props.title}
         className={this.props.className}
+        ref={(tooltip) => { this.tooltipDOM = tooltip; }}
+        style={{ display: 'inline', ...this.props.style }}
         tabIndex={this.props.tabIndex}
-        style={{
-          display: 'inline',
-          ...this.props.style
-        }}
-      >
+        title={this.props.title}>
         {this.props.children}
         {this.props.render && this.contentRoot()
           ? ReactDOM.createPortal(
-              applyIfFunction( this.props.render ),
-              this.contentRoot() )
+            applyIfFunction(this.props.render),
+            this.contentRoot())
           : null}
       </div>
     );
   }
 }
-
-
-Tooltip.defaultProps = defaultProps;
-
-export default Tooltip;
