@@ -1,6 +1,6 @@
-import { createStore as createReduxStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import { rootReducer } from './rootReducer';
+import { createStore as createReduxStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import { rootReducer } from './rootReducer'
 
 const enhancers = [
   applyMiddleware(
@@ -16,27 +16,29 @@ const enhancers = [
     ? window.devToolsExtension()
     // Else we return a no-op function.
     : f => f,
-];
+]
 
-export const configureStore = (initialState) => {
+export const configureStore = initialState => {
   const store = initialState
     ? createReduxStore(rootReducer, initialState, compose(...enhancers))
-    : createReduxStore(rootReducer, compose(...enhancers));
+    : createReduxStore(rootReducer, compose(...enhancers))
 
   // Enable Webpack hot module replacement for reducers. This is so that we
   // don't lose all of our current application state during hot reloading.
 
+  /* eslint-disable no-undef */
   if (process.env.NODE_ENV === 'development' && module.hot) {
     module.hot.accept('./rootReducer', () => {
       // eslint-disable-next-line global-require, import/newline-after-import
-      const nextReducer = require('./rootReducer').rootReducer;
-      store.replaceReducer(nextReducer);
-    });
+      const nextReducer = require('./rootReducer').rootReducer
+      store.replaceReducer(nextReducer)
+    })
   }
+  /* eslint-enable no-undef */
 
-  return store;
-};
+  return store
+}
 
-const store = configureStore();
+const store = configureStore()
 
-export default store;
+export default store

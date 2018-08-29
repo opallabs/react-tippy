@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { any, bool, number, object, string } from 'prop-types';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import { any, bool, number, object, string } from 'prop-types'
 
-import tippy from 'tippy.js/dist/tippy.all.js';
+import tippy from 'tippy.js/dist/tippy.all.js'
 
-import 'tippy.js/dist/themes/light.css';
-import 'tippy.js/dist/themes/translucent.css';
+import 'tippy.js/dist/themes/light.css'
+import 'tippy.js/dist/themes/translucent.css'
 
 function applyIfFunction(fn) {
-  return (typeof fn === 'function') ? fn() : fn;
+  return (typeof fn === 'function') ? fn() : fn
 }
 
 export default class Tooltip extends Component {
@@ -31,79 +31,79 @@ export default class Tooltip extends Component {
   };
 
   componentDidMount() {
-    this.initTippy();
+    this.initTippy()
   }
 
   componentWillUnmount() {
-    this.destroyTippy();
+    this.destroyTippy()
   }
 
   componentDidUpdate(prevProps) {
     if (!this.tippy) {
-      return;
+      return
     }
 
     // enable and disabled
     if (this.props.disabled === false && prevProps.disabled === true) {
-      this.tippy.enable();
-      return;
+      this.tippy.enable()
+      return
     }
 
     if (this.props.disabled === true && prevProps.disabled === false) {
-      this.tippy.disable();
-      return;
+      this.tippy.disable()
+      return
     }
 
     // open
     if (this.props.open === true && !prevProps.open) {
       setTimeout(() => {
-        this.showTooltip();
-      }, 0);
+        this.showTooltip()
+      }, 0)
     }
 
     if (this.props.open === false && prevProps.open === true) {
-      this.hideTooltip();
+      this.hideTooltip()
     }
   }
 
   showTooltip = () => {
-    this.tippy.show();
+    this.tippy.show()
   }
 
   hideTooltip = () => {
-    this.tippy.hide();
+    this.tippy.hide()
   }
 
   contentRoot = () => {
     if (!this._contentRoot && typeof window === 'object')
-      this._contentRoot = window.document.createElement('div');
-    return this._contentRoot;
+      this._contentRoot = window.document.createElement('div')
+    return this._contentRoot
   }
 
   initTippy = () => {
-    this.tooltipDOM.setAttribute('title', this.props.title);
+    this.tooltipDOM.setAttribute('title', this.props.title)
     tippy(this.tooltipDOM, {
       ...this.props,
       html: this.props.content ? this.contentRoot() : this.props.rawTemplate,
       dynamicTitle: true,
       performance: true
-    });
-    this.tippy = this.tooltipDOM._tippy;
+    })
+    this.tippy = this.tooltipDOM._tippy
     if (this.props.open) {
-      this.showTooltip();
+      this.showTooltip()
     }
   }
 
   destroyTippy = () => {
-    this.tippy.destroy();
-    this.tippy = null;
+    this.tippy.destroy()
+    this.tippy = null
   }
 
   render() {
     return (
       <div
         className={this.props.className}
-        ref={tooltip => { this.tooltipDOM = tooltip; }}
+        ref={tooltip => { this.tooltipDOM = tooltip }}
         style={{ display: 'inline', ...this.props.style }}
         tabIndex={this.props.tabIndex}
         title={this.props.title}>
@@ -114,6 +114,6 @@ export default class Tooltip extends Component {
             this.contentRoot())
           : null}
       </div>
-    );
+    )
   }
 }

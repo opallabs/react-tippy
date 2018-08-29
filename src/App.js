@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
+/* eslint-disable */
+import React, { Component } from 'react'
 import {
   compose,
   withState,
-} from 'recompose';
+} from 'recompose'
 import {
   connect,
-} from 'react-redux';
-import logo from './logo.svg';
-import './App.css';
+} from 'react-redux'
+import logo from './logo.svg'
+import './App.css'
 import {
   Tooltip,
   withTooltip,
-} from './Tooltip';
+} from './Tooltip'
 import {
   contentSelector
-} from './state';
+} from './state'
 
 const ManualPopover = ({ children, open, onRequestClose, content }) => {
   return (
@@ -29,19 +30,19 @@ const ManualPopover = ({ children, open, onRequestClose, content }) => {
     >
       {children}
     </Tooltip>
-  );
+  )
 };
 
 class Menu extends React.Component {
   state = { visible: false };
   render() {
-    const { selected, children } = this.props;
+    const { selected, children } = this.props
 
     const PopoverContent = (
       <div onClick={() => this.setState({ visible: false })}>
         {children}
       </div>
-    );
+    )
 
     return (
       <div>
@@ -49,8 +50,8 @@ class Menu extends React.Component {
           open={this.state.visible}
           content={PopoverContent}
           onRequestClose={() => {
-            console.log('triggered');
-            this.setState({ visible: false });
+            console.log('triggered')
+            this.setState({ visible: false })
           }}
         >
           <button onClick={e => this.setState({ visible: !this.state.visible })}>
@@ -59,7 +60,7 @@ class Menu extends React.Component {
         </ManualPopover>
         {children}
       </div>
-    );
+    )
   }
 }
 
@@ -67,48 +68,48 @@ class Example extends React.Component {
   state = { value: 1 };
 
   render() {
-    const { value } = this.state;
-    const options = [1, 2];
+    const { value } = this.state
+    const options = [1, 2]
 
     return (
       <Menu selected={value}>
         {options.map(option => {
-          const isActive = option === value;
-          console.log(`Rendering ${option}, isActive: ${isActive}`);
+          const isActive = option === value
+          console.log(`Rendering ${option}, isActive: ${isActive}`)
           return (
             <div key={option} onClick={() => this.setState({ value: option })}>
               {option} – {isActive ? "Active" : "Not Active"}
             </div>
-          );
+          )
         })}
       </Menu>
-    );
+    )
   }
 }
 
 
 const NormalHeader = () => (
   <h2>Normal component</h2>
-);
+)
 
 const Header = () => (
   <h2>Component with tooltip</h2>
-);
+)
 
 const HeaderWithTootip = withTooltip(Header, {
   title: 'Welcome to React with tooltip',
-});
+})
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   content: contentSelector(state),
-});
+})
 
 class TooltipContentComponent extends Component {
   componentWillMount() {
-    console.log('mount now');
+    console.log('mount now')
   }
   componentWillUnmount() {
-    console.log('unmount now');
+    console.log('unmount now')
   }
 
   render() {
@@ -116,11 +117,11 @@ class TooltipContentComponent extends Component {
       <div>
         TooltipContent here {this.props.content}
       </div>
-    );
+    )
   }
-};
+}
 
-const TooltipContent = connect(mapStateToProps)(TooltipContentComponent);
+const TooltipContent = connect(mapStateToProps)(TooltipContentComponent)
 
 class App extends Component {
   render() {
@@ -131,7 +132,7 @@ class App extends Component {
       setDisabled,
       open,
       setIsOpen,
-    } = this.props;
+    } = this.props
     return (
       <div className="App">
         <div className="App-header" onClick={() => {setDisabled(!disabled)}}>
@@ -218,7 +219,7 @@ class App extends Component {
               <input
                 type="text"
                 value={tooltipContent}
-                onChange={(e) => {setTooltipContent(e.target.value)}}
+                onChange={e => {setTooltipContent(e.target.value)}}
               />
             </div>
           )}
@@ -230,7 +231,7 @@ class App extends Component {
 
         <Example />
       </div>
-    );
+    )
   }
 }
 
@@ -238,6 +239,6 @@ const enhance = compose(
   withState('tooltipContent', 'setTooltipContent', 'tooltipContent'),
   withState('open', 'setIsOpen', false),
   withState('disabled', 'setDisabled', false),
-);
+)
 
-export default enhance(App);
+export default enhance(App)

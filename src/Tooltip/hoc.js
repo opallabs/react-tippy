@@ -1,12 +1,12 @@
-import React from 'react';
-import Tooltip from './component';
+import React from 'react'
+import Tooltip from './component'
 
-const withTooltip = (Component, options = {}) => ({
+const withTooltip = (Component, options = {}) => ({ // eslint-disable-line react/display-name
   ...props,
 }) => (
   <Tooltip {...options}>
     <Component {...props} />
   </Tooltip>
-);
+)
 
-export default withTooltip;
+export default withTooltip

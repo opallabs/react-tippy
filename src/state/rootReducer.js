@@ -1,10 +1,10 @@
-import { branch as appBranch } from '../state';
+import { branch as appBranch } from '../state'
 import {
   combineReducers,
-} from 'redux';
+} from 'redux'
 
 export const rootReducer = combineReducers({
   ...appBranch,
-});
+})
 
-export default rootReducer;
+export default rootReducer

@@ -47,8 +47,9 @@
     "yargs": "^7.0.2"
   },
   "scripts": {
-    "prepare": "webpack --config webpacklib.config.js --env build",
     "build": "webpack --config webpacklib.config.js --env build",
+    "lint": "eslint src/**/*.js",
+    "prepare": "webpack --config webpacklib.config.js --env build",
     "start": "react-scripts start"
   },
   "dependencies": {

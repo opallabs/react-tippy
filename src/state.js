@@ -1,13 +1,13 @@
-import makeStateAction from 'redux-state-action';
+import makeStateAction from 'redux-state-action'
 
-const reducerPath = 'eh/app';
+const reducerPath = 'eh/app'
 
 const names = {
   content: {
     type: 'string',
     defaultValue: 'Content',
   },
-};
+}
 
 export const {
   branch,
@@ -16,6 +16,6 @@ export const {
 } = makeStateAction({
   reducerPath,
   names,
-});
+})
 
-export const contentSelector = selectorFactory('content');
+export const contentSelector = selectorFactory('content')
