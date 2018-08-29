@@ -1,3 +1,4 @@
+/* global require, process, module */
 import { createStore as createReduxStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { rootReducer } from './rootReducer'
@@ -26,7 +27,6 @@ export const configureStore = initialState => {
   // Enable Webpack hot module replacement for reducers. This is so that we
   // don't lose all of our current application state during hot reloading.
 
-  /* eslint-disable no-undef */
   if (process.env.NODE_ENV === 'development' && module.hot) {
     module.hot.accept('./rootReducer', () => {
       // eslint-disable-next-line global-require, import/newline-after-import
@@ -34,7 +34,6 @@ export const configureStore = initialState => {
       store.replaceReducer(nextReducer)
     })
   }
-  /* eslint-enable no-undef */
 
   return store
 }

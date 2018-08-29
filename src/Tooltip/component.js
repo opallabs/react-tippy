@@ -75,8 +75,9 @@ export default class Tooltip extends Component {
   }
 
   contentRoot = () => {
-    if (!this._contentRoot && typeof window === 'object')
+    if (!this._contentRoot && typeof window === 'object') {
       this._contentRoot = window.document.createElement('div')
+    }
     return this._contentRoot
   }
 
