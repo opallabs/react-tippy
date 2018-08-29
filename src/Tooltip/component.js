@@ -15,10 +15,10 @@ export default class Tooltip extends Component {
   static propTypes = {
     children: any,
     className: string,
+    content: any,
     disabled: bool,
     open: bool,
     rawTemplate: any,
-    render: any,
     style: object,
     tabIndex: number,
     title: string,
@@ -84,7 +84,7 @@ export default class Tooltip extends Component {
     this.tooltipDOM.setAttribute('title', this.props.title);
     tippy(this.tooltipDOM, {
       ...this.props,
-      html: this.props.render ? this.contentRoot() : this.props.rawTemplate,
+      html: this.props.content ? this.contentRoot() : this.props.rawTemplate,
       dynamicTitle: true,
       performance: true
     });
@@ -108,9 +108,9 @@ export default class Tooltip extends Component {
         tabIndex={this.props.tabIndex}
         title={this.props.title}>
         {this.props.children}
-        {this.props.render && this.contentRoot()
+        {this.props.content && this.contentRoot()
           ? ReactDOM.createPortal(
-            applyIfFunction(this.props.render),
+            applyIfFunction(this.props.content),
             this.contentRoot())
           : null}
       </div>
