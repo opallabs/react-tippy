@@ -4,4 +4,4 @@ import withTooltip from './hoc';
 export {
   Tooltip,
   withTooltip,
-}
+};

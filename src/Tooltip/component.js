@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { any, bool, number, object, string } from 'prop-types';
 
 import tippy from 'tippy.js/dist/tippy.all.js';
+
 import 'tippy.js/dist/themes/light.css';
 import 'tippy.js/dist/themes/translucent.css';
 
@@ -10,6 +12,18 @@ function applyIfFunction(fn) {
 }
 
 export default class Tooltip extends Component {
+  static propTypes = {
+    children: any,
+    className: string,
+    disabled: bool,
+    open: bool,
+    rawTemplate: any,
+    render: any,
+    style: object,
+    tabIndex: number,
+    title: string,
+  };
+
   static defaultProps = {
     disabled: false,
     open: false,
@@ -44,7 +58,7 @@ export default class Tooltip extends Component {
     if (this.props.open === true && !prevProps.open) {
       setTimeout(() => {
         this.showTooltip();
-      }, 0)
+      }, 0);
     }
 
     if (this.props.open === false && prevProps.open === true) {
@@ -89,7 +103,7 @@ export default class Tooltip extends Component {
     return (
       <div
         className={this.props.className}
-        ref={(tooltip) => { this.tooltipDOM = tooltip; }}
+        ref={tooltip => { this.tooltipDOM = tooltip; }}
         style={{ display: 'inline', ...this.props.style }}
         tabIndex={this.props.tabIndex}
         title={this.props.title}>
