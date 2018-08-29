@@ -16,17 +16,9 @@
     "browser": true
   },
   "rules": {
-    "semi": [
-      "error",
-      "never"
-    ],
-    "arrow-parens": [
-      "error",
-      "as-needed"
-    ],
-    "eol-last": [
-      "error",
-      "never"
-    ]
+    "semi": ["error", "never"],
+    "arrow-parens": ["error", "as-needed"],
+    "eol-last": ["error", "never"],
+    "curly": ["error", "all"]
   }
 }
