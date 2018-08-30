@@ -17,6 +17,7 @@ export default class Tooltip extends Component {
     className: string,
     content: any,
     disabled: bool,
+    forceClose: bool,
     open: bool,
     rawTemplate: any,
     style: object,
@@ -62,6 +63,10 @@ export default class Tooltip extends Component {
     }
 
     if (this.props.open === false && prevProps.open === true) {
+      this.hideTooltip()
+    }
+
+    if (this.props.forceClose === true && prevProps.forceClose === false) {
       this.hideTooltip()
     }
   }
