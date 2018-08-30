@@ -1,28 +1,13 @@
 /* global __dirname, require, module */
-
-const webpack = require('webpack');
-const path = require('path');
-const env = require('yargs').argv.env; // use --env with webpack 2
-
-const libraryName = 'reactTippy';
-const outputFile = 'react-tippy.js';
-const plugins = [];
-
-if (env === 'build') {
-  // plugins.push(new UglifyJsPlugin({ minimize: true }));
-  // plugins.push(new LodashModuleReplacementPlugin({
-  //   collections: true,
-  //   paths: true,
-  // }));
-}
+const path = require('path')
 
 const config = {
   entry: __dirname + '/src/Tooltip/index.js',
   devtool: 'source-map',
   output: {
     path: __dirname + '/dist',
-    filename: outputFile,
-    library: libraryName,
+    filename: 'react-tippy.js',
+    library: 'reactTippy',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
@@ -35,7 +20,7 @@ const config = {
           presets: ['es2015', 'react'],
           plugins: ['transform-object-rest-spread', 'transform-class-properties']
         },
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -72,14 +57,13 @@ const config = {
       umd: 'popper.js',
     },
     'tippy.js/dist/tippy.standalone.js': {
-        root: 'tippy',
-        commonjs2: 'tippy.js/dist/tippy.standalone.js',
-        commonjs: 'tippy.js/dist/tippy.standalone.js',
-        amd: 'tippy.js/dist/tippy.standalone.js',
-        umd: 'tippy.js/dist/tippy.standalone.js',
+      root: 'tippy',
+      commonjs2: 'tippy.js/dist/tippy.standalone.js',
+      commonjs: 'tippy.js/dist/tippy.standalone.js',
+      amd: 'tippy.js/dist/tippy.standalone.js',
+      umd: 'tippy.js/dist/tippy.standalone.js',
     }
   },
-  plugins: plugins,
-};
+}
 
-module.exports = config;
+module.exports = config
