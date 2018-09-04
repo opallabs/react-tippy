@@ -87,9 +87,11 @@ export default class Tooltip extends Component {
   }
 
   initTippy = () => {
+    const offset = this.calculateOffset();
     this.tooltipDOM.setAttribute('title', this.props.title)
     tippy(this.tooltipDOM, {
       ...this.props,
+      distance: offset,
       html: this.props.content ? this.contentRoot() : this.props.rawTemplate,
       dynamicTitle: true,
       performance: true
@@ -99,10 +101,19 @@ export default class Tooltip extends Component {
       this.showTooltip()
     }
   }
-
+  
   destroyTippy = () => {
     this.tippy.destroy()
     this.tippy = null
+  }
+  
+  calculateOffset = () => {
+    const { placement, edgeOffset } = this.props;
+    if (placement === 'right' || placement === 'left' || edgeOffset === undefined) {
+      return undefined;
+    }
+    const height = this.tooltipDOM.firstChild.getBoundingClientRect().height;
+    return (height / 2) + edgeOffset;
   }
 
   render() {
