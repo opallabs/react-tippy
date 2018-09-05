@@ -13,6 +13,48 @@
     "url": "https://github.com/opallabs/react-tippy/issues"
   },
   "homepage": "https://github.com/opallabs/react-tippy",
+  "nyc": {
+    "watermarks": {
+      "lines": [
+        25,
+        90
+      ],
+      "functions": [
+        25,
+        90
+      ],
+      "branches": [
+        25,
+        90
+      ],
+      "statements": [
+        25,
+        90
+      ]
+    },
+    "lines": 49,
+    "statements": 47,
+    "functions": 29,
+    "branches": 33,
+    "exclude": [
+      "dist/**/*",
+      "test/helpers/*",
+      "**/webpacklib.config.js",
+      "coverage/**/*"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "all": true,
+    "cache": true,
+    "check-coverage": true,
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.24.0",
@@ -25,8 +67,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "css-loader": "^1.0.0",
     "chai": "^3.5.0",
+    "css-loader": "^1.0.0",
     "eslint": "^3.18.0",
     "eslint-loader": "^1.6.3",
     "eslint-plugin-import": "^2.2.0",
@@ -50,10 +92,24 @@
     "build": "webpack --config webpacklib.config.js --env build",
     "lint": "eslint src/**/*.js",
     "prepare": "webpack --config webpacklib.config.js --env build",
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "test": "NODE_ENV=test nyc mocha --opts ./test/mocha.opts"
   },
   "dependencies": {
+    "babel-plugin-istanbul": "^5.0.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-polyfill": "^6.26.0",
+    "cache-require-paths": "^0.3.0",
+    "chai-enzyme": "^1.0.0-beta.1",
+    "enzyme": "^3.5.1",
+    "enzyme-adapter-react-16": "^1.4.0",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^12.0.0",
+    "nyc": "^13.0.1",
     "popper.js": "^1.11.1",
+    "sinon": "^6.2.0",
+    "sinon-chai": "^3.2.0",
     "tippy.js": "^2.1.1"
   }
 }
