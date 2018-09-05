@@ -96,6 +96,7 @@
     "test": "NODE_ENV=test nyc mocha --opts ./test/mocha.opts"
   },
   "dependencies": {
+    "@opallabs/tippy.js": "opallabs/tippy.js",
     "babel-plugin-istanbul": "^5.0.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-plugin-transform-export-extensions": "^6.22.0",
@@ -109,7 +110,6 @@
     "nyc": "^13.0.1",
     "popper.js": "^1.11.1",
     "sinon": "^6.2.0",
-    "sinon-chai": "^3.2.0",
-    "tippy.js": "^2.1.1"
+    "sinon-chai": "^3.2.0"
   }
 }
