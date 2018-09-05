@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { any, bool, number, object, string } from 'prop-types'
+import { any, bool, number, object, oneOf, string } from 'prop-types'
 
 import tippy from 'tippy.js/dist/tippy.all.js'
 
@@ -17,8 +17,10 @@ export default class Tooltip extends Component {
     className: string,
     content: any,
     disabled: bool,
+    edgeOffset: number,
     forceClose: bool,
     open: bool,
+    placement: oneOf(['top', 'bottom', 'left', 'right']),
     rawTemplate: any,
     style: object,
     tabIndex: number,
@@ -28,6 +30,7 @@ export default class Tooltip extends Component {
   static defaultProps = {
     disabled: false,
     open: false,
+    placement: 'bottom',
     title: null,
   };
 
@@ -87,9 +90,11 @@ export default class Tooltip extends Component {
   }
 
   initTippy = () => {
+    const offset = this.calculateOffset()
     this.tooltipDOM.setAttribute('title', this.props.title)
     tippy(this.tooltipDOM, {
       ...this.props,
+      distance: offset,
       html: this.props.content ? this.contentRoot() : this.props.rawTemplate,
       dynamicTitle: true,
       performance: true
@@ -99,10 +104,19 @@ export default class Tooltip extends Component {
       this.showTooltip()
     }
   }
-
+  
   destroyTippy = () => {
     this.tippy.destroy()
     this.tippy = null
+  }
+  
+  calculateOffset = () => {
+    const { placement, edgeOffset } = this.props
+    if (placement === 'right' || placement === 'left' || edgeOffset === undefined) {
+      return undefined
+    }
+    const height = this.tooltipDOM.firstChild.getBoundingClientRect().height
+    return (height / 2) + edgeOffset
   }
 
   render() {

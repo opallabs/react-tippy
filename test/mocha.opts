@@ -1,0 +1,11 @@
+--recursive
+--check-leaks
+--require babel-polyfill
+--require ../../../test/helpers/babel.js
+--require ../../../test/helpers/require.js
+--require ../../../test/helpers/paths.js
+--require ../../../test/helpers/ignore.js
+--require ../../../test/helpers/dom.js
+--require ../../../test/helpers/setup.js
+--reporter nyan
+src/**/*tests.js

@@ -5,6 +5,8 @@
 
 # testing
 /coverage
+.nyc_output/
+.cache-require-paths.json
 
 # production
 /build

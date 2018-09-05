@@ -1,0 +1,49 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "loose": true,
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "ie 11",
+            "last 6 chrome versions",
+            "last 6 firefox versions",
+            "last 4 edge versions"
+          ]
+        }
+      }
+    ],
+    "react"
+  ],
+  "plugins": [
+    "transform-export-extensions",
+    "transform-class-properties",
+    "transform-decorators-legacy",
+    "transform-object-rest-spread",
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ],
+      "presets": [
+        [
+          "env",
+          {
+            "loose": true,
+            "modules": "commonjs",
+            "targets": {
+              "node": "current"
+            }
+          }
+        ],
+        "react"
+      ]
+    }
+  },
+  "ignore": [
+    "node_modules"
+  ]
+}
