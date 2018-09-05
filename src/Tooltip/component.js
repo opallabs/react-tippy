@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { any, bool, number, object, string } from 'prop-types'
+import { any, bool, number, object, oneOf, string } from 'prop-types'
 
 import tippy from 'tippy.js/dist/tippy.all.js'
 
@@ -17,8 +17,10 @@ export default class Tooltip extends Component {
     className: string,
     content: any,
     disabled: bool,
+    edgeOffset: number,
     forceClose: bool,
     open: bool,
+    placement: oneOf(['top', 'bottom', 'left', 'right']),
     rawTemplate: any,
     style: object,
     tabIndex: number,
@@ -28,6 +30,7 @@ export default class Tooltip extends Component {
   static defaultProps = {
     disabled: false,
     open: false,
+    placement: 'bottom',
     title: null,
   };
 
