@@ -25,6 +25,7 @@ export default class Tooltip extends Component {
     style: object,
     tabIndex: number,
     title: string,
+    useCapture: bool,
   };
 
   static defaultProps = {
@@ -32,6 +33,7 @@ export default class Tooltip extends Component {
     open: false,
     placement: 'bottom',
     title: null,
+    useCapture: false,
   };
 
   componentDidMount() {
@@ -92,6 +94,11 @@ export default class Tooltip extends Component {
   initTippy = () => {
     const offset = this.calculateOffset()
     this.tooltipDOM.setAttribute('title', this.props.title)
+
+    if (this.props.useCapture) {
+      tippy.useCapture()
+    }
+
     tippy(this.tooltipDOM, {
       ...this.props,
       distance: offset,
@@ -99,6 +106,7 @@ export default class Tooltip extends Component {
       dynamicTitle: true,
       performance: true
     })
+
     this.tippy = this.tooltipDOM._tippy
     if (this.props.open) {
       this.showTooltip()
