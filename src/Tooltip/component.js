@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { any, bool, number, object, oneOf, string } from 'prop-types'
 
-import tippy from '@opallabs/tippy.js/dist/tippy.all.js'
+import tippy from 'tippy.js/dist/tippy.all.js'
 
-import '@opallabs/tippy.js/dist/themes/light.css'
-import '@opallabs/tippy.js/dist/themes/translucent.css'
+import 'tippy.js/dist/themes/light.css'
+import 'tippy.js/dist/themes/translucent.css'
 
 function applyIfFunction(fn) {
   return (typeof fn === 'function') ? fn() : fn
